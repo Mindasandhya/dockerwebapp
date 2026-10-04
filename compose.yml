@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   application_image:
-    image: vprofile-app
+    image: vprofile-app:latest
     ports:
       - "1111:8080"
     deploy:
@@ -15,17 +15,17 @@ services:
       - database_image
 
   database_image:
-    image: vprofile-db
+    image: vprofile-db:latest
     ports:
       - "1112:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: devopspassword
-    MYSQL_DATABASE: accounts
-  deploy:
-      replicas: 3
-  volumes:
+    environment:
+      MYSQL_ROOT_PASSWORD: devopspassword
+      MYSQL_DATABASE: accounts
+    deploy:
+      replicas: 1
+    volumes:
       - myvolume2:/sandhyaSrinivas
-  networks:
+    networks:
       - network1
 
 volumes:
